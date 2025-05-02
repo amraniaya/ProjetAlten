@@ -327,7 +327,7 @@ def attendre_et_remplir_sous_categorie(driver, wait):
         const start = Date.now();
 
         function checkOptions() {{
-            const select = document.querySelector("select[id='{sous_categorie_id} ']");  // 👈 espace en trop ici
+            const select = document.querySelector("select[id='{sous_categorie_id}']");
             if (!select) {{
                 if (Date.now() - start > 10000) return callback(false);
                 return setTimeout(checkOptions, 300);
@@ -369,10 +369,6 @@ def attendre_et_remplir_sous_categorie(driver, wait):
             }}
         }}
     """)
-
-
-def escape_css_id(raw_id):
-    return "#" + raw_id.replace(":", "\\\\:")
 
 def remplir_champ_technologie(driver, wait):
     technologie_id = "IO:72b05ce2db1732006e0970d9bf96190c"
@@ -462,9 +458,9 @@ def remplir_champs_obligatoires_iu():
     remplir_champ_input_id_contrat(driver, wait)
     #remplir_champ_origine(driver, wait)
     remplir_champ_technologie(driver, wait)
-    #attendre_et_remplir_categorie(driver, wait)
-    attendre_et_remplir_sous_categorie(driver, wait)
     attendre_et_remplir_categorie(driver, wait)
+    attendre_et_remplir_sous_categorie(driver, wait)
+    #attendre_et_remplir_categorie(driver, wait)
     remplir_numero_mobile_disponible(driver, wait)
     remplir_description(driver, wait)
     cocher_case_test_ticket(driver, wait)
